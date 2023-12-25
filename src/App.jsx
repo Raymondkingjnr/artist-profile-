@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { fetchedata } from "./utils";
+import { fetchData } from "./utils";
 
 const App = () => {
   const [data, setData] = useState([]);
@@ -7,7 +7,7 @@ const App = () => {
   useEffect(() => {
     const fetchDataAndDisplay = async () => {
       try {
-        const fetchedData = await fetchedata();
+        const fetchedData = await fetchData();
         console.log(fetchedData);
         setData(fetchedData);
       } catch (error) {
