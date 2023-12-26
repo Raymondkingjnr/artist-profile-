@@ -29,6 +29,8 @@ const getAccessToken = async () => {
   }
 };
 
+//  2YZyLoL8N0Wb9xBt1NhZWg
+
 export const fetchData = async (artistId) => {
   try {
     const token = await getAccessToken();
@@ -48,6 +50,7 @@ export const fetchData = async (artistId) => {
           },
           params: {
             market: "NG",
+            album: "album",
           },
         })
         .then((res) => res.data),
