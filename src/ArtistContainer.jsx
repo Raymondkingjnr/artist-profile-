@@ -164,7 +164,7 @@ const ArtistContainer = ({
             </h1>
           ) : (
             <aside className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 items-center place-content-center  place-items-center gap-4">
-              {data?.albumData?.slice(0, 12)?.map((album, index) => {
+              {data?.albumData?.map((album, index) => {
                 const { images, name, release_date, total_tracks, id } = album;
                 return (
                   <div key={index}>
