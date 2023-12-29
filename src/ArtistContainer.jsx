@@ -254,7 +254,7 @@ const ArtistContainer = ({
 
       <main className=" py-20">
         {artist_related_artists ? (
-          <h1 className=" font-bold  text-base md:text-2xl text-white">
+          <h1 className=" font-bold  text-base md:text-2xl text-white pl-[1rem]">
             {" "}
             Similer Artists{" "}
           </h1>
@@ -264,7 +264,7 @@ const ArtistContainer = ({
         <div className=" grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 gap-6 pt-9">
           {artist_related_artists?.slice(0, 12)?.map((item, index) => (
             <aside key={index}>
-              <figure className=" grid place-content-center place-items-center">
+              <figure className=" grid place-items-center">
                 <a href={item?.external_urls?.spotify} target="_blank">
                   <img
                     src={item?.images[2]?.url}

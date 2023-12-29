@@ -25,7 +25,7 @@ const SearchBox = ({
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Artist Name"
-            className="input input-bordered md:w-[350px] max-w-xs font-medium text-sm"
+            className="input input-bordered md:w-[350px] font-medium text-sm"
           />
         </form>
         {/* <button onClick={}>Click Me</button> */}
