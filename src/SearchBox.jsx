@@ -11,8 +11,8 @@ const SearchBox = ({
     <section className=" grid place-items-center py-20">
       <h1 className=" font-bold  text-base md:text-2xl pb-10">How it works</h1>
       <main className=" grid  md:w-[350px] max-w-xs gap-y-4 ">
-        <article className="flex place-items-center  gap-2">
-          <div className=" h-2 w-2 rounded-full bg-gray-300 mt-[4px]" />
+        <article className="flex place-items-center  gap-[2px]">
+          <div className=" h-[3px] w-[3px] rounded-full bg-gray-300 mt-[4px]" />
           <h3 className=" text-xs md:text-sm font-bold">
             Search For any artist
           </h3>

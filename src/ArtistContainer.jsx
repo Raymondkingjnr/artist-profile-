@@ -106,46 +106,56 @@ const ArtistContainer = ({
         ) : (
           ""
         )}
-
-        {data?.albumData ? (
-          <div className=" flex gap-2 place-content-center md:place-content-start pt-5">
-            <div
-              role="button"
-              onClick={() => handleAlbumTypeChange("album")}
-              className={
-                albumType === "album"
-                  ? " btn font-bold text-sm border-red-100 text-gray-800  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
-                  : "btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize"
-              }
-            >
-              Albums
+        <main>
+          {data?.albumData ? (
+            <div className=" flex gap-2 place-content-center md:place-content-start pt-5">
+              <div
+                role="button"
+                onClick={() => handleAlbumTypeChange("album")}
+                className={
+                  albumType === "album"
+                    ? " btn font-bold text-sm border-red-100 text-gray-800  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
+                    : "btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize"
+                }
+              >
+                Albums
+              </div>
+              <div
+                role="button"
+                onClick={() => handleAlbumTypeChange("single")}
+                className={
+                  albumType === "single"
+                    ? " btn font-bold text-sm border-red-100 text-gray-800  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
+                    : "btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize"
+                }
+              >
+                single's
+              </div>
+              <div
+                role="button"
+                onClick={() => handleAlbumTypeChange("appears_on")}
+                className={
+                  albumType === "appears_on"
+                    ? " btn font-bold text-sm border-red-100 text-gray-800  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
+                    : "btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize"
+                }
+              >
+                appears_on
+              </div>
             </div>
-            <div
-              role="button"
-              onClick={() => handleAlbumTypeChange("single")}
-              className={
-                albumType === "single"
-                  ? " btn font-bold text-sm border-red-100 text-gray-800  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
-                  : "btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize"
-              }
+          ) : (
+            ""
+          )}
+          {/* <div>
+            <a
+              href={data?.albumData?.external_urls?.spotify}
+              target="_blank"
+              className=" btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
             >
-              single's
-            </div>
-            <div
-              role="button"
-              onClick={() => handleAlbumTypeChange("appears_on")}
-              className={
-                albumType === "appears_on"
-                  ? " btn font-bold text-sm border-red-100 text-gray-800  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize "
-                  : "btn font-bold text-sm  bg-gradient-to-l from-red-500 to-orange-400 border-transparent capitalize"
-              }
-            >
-              appears_on
-            </div>
-          </div>
-        ) : (
-          ""
-        )}
+              View More
+            </a>
+          </div> */}
+        </main>
 
         <div className=" pt-9">
           {data?.albumData < 1 ? (
@@ -154,7 +164,7 @@ const ArtistContainer = ({
             </h1>
           ) : (
             <aside className="grid grid-cols-2 md:grid-cols-5 lg:grid-cols-8 items-center place-content-center  place-items-center gap-4">
-              {data?.albumData?.map((album, index) => {
+              {data?.albumData?.slice(0, 12)?.map((album, index) => {
                 const { images, name, release_date, total_tracks, id } = album;
                 return (
                   <div key={index}>
@@ -188,7 +198,7 @@ const ArtistContainer = ({
               className="fixed z-30 w-full h-full blur-bg top-0 left-0"
               onClick={handleAlbumClose}
             />
-            <div className="overflow-y-auto w-full  md:-translate-x-1/2 -translate-y-1/2 z-40 bg-[#221612] modal-box modal-scroll absolute top-1/2 md:left-1/2 p-5 rounded-lg ">
+            <div className="overflow-y-auto w-full h-[100vh]  md:-translate-x-1/2 -translate-y-1/2 z-40 bg-[#221612] modal-box modal-scroll absolute top-[30%] md:left-1/2 p-5 rounded-lg ">
               <button onClick={handleAlbumClose} className=" float-right">
                 {" "}
                 <svg
