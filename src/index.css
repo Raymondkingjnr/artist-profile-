@@ -4,13 +4,15 @@
 
 @layer components {
   .align-element {
-    @apply mx-auto max-w-[1500px] px-8;
+    @apply mx-auto max-w-[1500px] px-[2rem];
   }
 }
 
 body {
-  background: black;
+  background: #0c0b15;
   color: white;
+
+  /* background: #632a19; */
 }
 
 .text-gradient {
@@ -20,4 +22,53 @@ body {
   -webkit-background-clip: text;
   text-fill-color: transparent;
   -webkit-text-fill-color: transparent;
+}
+
+.modaled {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #221612;
+  padding: 20px;
+  z-index: 1000;
+  color: wheat;
+  border-radius: 2rem;
+  width: 30%;
+  margin: auto;
+}
+
+.blur-bg {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.scale-in-center {
+  -webkit-animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+    both;
+  animation: scale-in-center 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+
+@-webkit-keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
 }

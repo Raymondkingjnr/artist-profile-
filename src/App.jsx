@@ -1,37 +1,75 @@
 import React, { useEffect, useState } from "react";
-import { fetchData } from "./utils";
+import { fetchData, searchArtist } from "./utils";
 import SearchBox from "./SearchBox";
 import ArtistContainer from "./ArtistContainer";
 
 const App = () => {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
-  const [artistId, setArtistId] = useState("");
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchData, setSearchData] = useState([]);
+  const [selectedArtist, setSelectedArtist] = useState(null);
+  const [selectedAlbum, setSelectedAlbum] = useState(null);
+  const [albumType, setAlbumType] = useState("album");
 
   useEffect(() => {
-    // Check if data is stored in localStorage on component mount
-    const storedData = localStorage.getItem("artistData");
-    if (storedData) {
-      setData(JSON.parse(storedData));
+    if (selectedArtist) {
+      handleFetchData(selectedArtist);
     }
-  }, []);
+  }, [selectedArtist, albumType]);
 
-  const handleFetchData = async (e) => {
-    e.preventDefault();
+  const handleFetchData = async (artistId) => {
     setLoading(true);
     try {
-      const fetchedData = await fetchData(artistId);
-      // console.log(fetchedData);
+      const fetchedData = await fetchData(artistId, albumType);
       setData(fetchedData);
-      setArtistId("");
       setLoading(false);
-      localStorage.setItem("artistData", JSON.stringify(fetchedData));
     } catch (error) {
       console.log(error.message);
     }
+    setLoading(false);
   };
 
-  console.log(data);
+  // console.log(data);
+
+  const handleSearchData = async (e) => {
+    e.preventDefault();
+    setLoading(true);
+    try {
+      if (!searchQuery) {
+        alert("Search Box cannot be empty.");
+      }
+      const result = await searchArtist(searchQuery);
+      console.log(result);
+      setSearchData(result);
+      setLoading(false);
+    } catch (error) {
+      alert("error", error.message);
+    }
+    setLoading(false);
+  };
+
+  const handleArtistClicked = async (artistId) => {
+    try {
+      await handleFetchData(artistId);
+      setSelectedArtist(artistId);
+    } catch (error) {
+      alert(error.message);
+    }
+  };
+
+  const handleAlbumTypeChange = (type) => {
+    setAlbumType(type);
+  };
+
+  const handleAlbumClick = (albumId) => {
+    const album = data.albumData.find((item) => item.id === albumId);
+    setSelectedAlbum(album);
+  };
+
+  const handleAlbumClose = () => {
+    setSelectedAlbum(null);
+  };
 
   return (
     <div className="py-3 align-element">
@@ -40,11 +78,22 @@ const App = () => {
         <h1 className=" font-bold text-2xl px-4 text-gradient">TuneInBio</h1>
       </nav>
       <SearchBox
-        setArtistId={setArtistId}
-        artistId={artistId}
-        handleFetchData={handleFetchData}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        handleSearchData={handleSearchData}
+        searchData={searchData}
+        handleArtistClicked={handleArtistClicked}
+        loading={loading}
       />
-      <ArtistContainer data={data} loading={loading} />
+      <ArtistContainer
+        data={data}
+        loading={loading}
+        handleAlbumClick={handleAlbumClick}
+        handleAlbumClose={handleAlbumClose}
+        selectedAlbum={selectedAlbum}
+        handleAlbumTypeChange={handleAlbumTypeChange}
+        albumType={albumType}
+      />
     </div>
   );
 };
