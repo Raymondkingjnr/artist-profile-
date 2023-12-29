@@ -198,7 +198,7 @@ const ArtistContainer = ({
               className="fixed z-30 w-full h-full blur-bg top-0 left-0"
               onClick={handleAlbumClose}
             />
-            <div className="overflow-y-auto w-full h-[100vh]  md:-translate-x-1/2 -translate-y-1/2 z-40 bg-[#221612] modal-box modal-scroll absolute top-[30%] md:left-1/2 p-5 rounded-lg ">
+            <div className="overflow-y-auto w-full h-fit  md:-translate-x-1/2 -translate-y-1/2 z-40 bg-[#221612] modal-box modal-scroll fixed top-1/2 left-0 md:left-1/2 p-5 rounded-lg ">
               <button onClick={handleAlbumClose} className=" float-right">
                 {" "}
                 <svg
